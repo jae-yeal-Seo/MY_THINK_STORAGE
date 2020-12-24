@@ -1,0 +1,32 @@
+package ch05_2.oop;
+import java.util.*;
+public class StringClass {
+	private static Scanner scan= new Scanner(System.in);
+	public static void main(String[] args) {
+		int[] nums=new int[3];
+		for(int i=0;i<nums.length;i++) {
+			nums[i]=scan.nextInt();
+			if(nums[i]>=100&&nums[i]<1000)
+				continue;
+			else {
+				i--;
+				continue;
+			}
+		}
+		int[] check=new int[10];
+		int d=nums[0]*nums[1]*nums[2];
+		String s=Integer.toString(d);//0~9까지의 숫자가 s에 몇개있는지 알아내기위해 d를 문자열로 만듦.
+		String num="0123456789";
+		for(int i=0;i<=9;i++) {
+			char d1=num.charAt(i);
+			for(int j=0;j<s.length();j++) {
+				if(d1==s.charAt(j)) {//둘의 타입이 모두 같아야 함. 그래서 d1이라는 문자형 변수를 만듦.
+					check[i]++;
+				}
+			}
+		}
+		for(int i=0;i<=9;i++) {
+			System.out.println(check[i]);
+		}
+	}
+}
