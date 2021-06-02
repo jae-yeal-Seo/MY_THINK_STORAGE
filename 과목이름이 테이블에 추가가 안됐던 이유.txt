@@ -1,0 +1,18 @@
+<?php
+	$con = mysqli_connect("localhost","chatmaster","chatmaster","chatdb");
+	mysqli_query($con,'SET NAMES utf8');
+	$SubjectNames = $_POST["SubjectNames"];
+	$userID = $_POST["userID"];
+
+	$statement = mysqli_prepare($con, "INSERT INTO SubjectName(SubjectNames, userID) 
+	VALUES(?,?)");
+	mysqli_stmt_bind_param($statement,"ss",$SubjectNames,$userID);
+	//두번째 인수에 sssi를 적었다. 인터넷에서 그대로 따라쓴 탓이다.
+	//나는 2개의 string type을 넣기 때문에 string,string인 ss를 넣는게 맞다.
+
+	mysqli_stmt_excute($statement);
+
+	$response = array();
+	$response["success"] = true;
+	echo json_encode($response);
+?>
