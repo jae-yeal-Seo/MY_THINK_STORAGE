@@ -1,0 +1,21 @@
+try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            System.out.println(jsonObject);
+                            JSONArray jsonArray = jsonObject.getJSONArray("response");
+                            System.out.println(jsonArray);
+                            int count  = 0;
+                            while(count<jsonArray.length()) {
+                                JSONObject studyObject = jsonArray.getJSONObject(count);
+                                System.out.println(studyObject);
+                                String subjectName = studyObject.getString("subject"+count);
+                                HomeData returnSubjects = new HomeData(subjectName);
+                                arrayList.add(returnSubjects);
+                                homeAdapter.notifyDataSetChanged();
+                                count++;
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+//HomeFragment로 돌아오면 다시 과목들이 생겨나게 구현했다. 
+//다음시간에는 꾹 누르면 지워지는 기능을 구현할 것이다.
